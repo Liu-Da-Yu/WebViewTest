@@ -1,5 +1,6 @@
 package com.example.webviewtest;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,25 +25,27 @@ public class MainActivity extends AppCompatActivity implements JsBridge {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        new MySql().connDB();
-
+        //new MySql().connDB();
         //判断是否有用户信息 有用户信息直接进入
         SharedPreferences settings = getSharedPreferences("UserInfo", MODE_PRIVATE);
         String currentUser = settings.getString("currentUser", "");
         if( currentUser==null || "".equals(currentUser) ) {
-            setContentView(R.layout.activity_main);
             initLoginView(savedInstanceState);
         }else{
-            setContentView(R.layout.persion_info_list);
-            TextView viewById = findViewById(R.id.persionInfoListTv);
-            viewById.setText("欢迎您:"+currentUser);
+            //切换到列表页面
+            Intent i = new Intent();
+            i.setClass(MainActivity.this,ListActivity.class);
+            MainActivity.this.startActivity(i);
+            //setContentView(R.layout.persion_info_list);
+            //TextView viewById = findViewById(R.id.persionInfoListTv);
+            //viewById.setText("欢迎您:"+currentUser);
         }
     }
 
     private void initLoginView(Bundle savedInstanceState) {
         webView = findViewById(R.id.login_WebView);
-
         mHandler = new Handler();
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new JsInterfase(this),"Login");
@@ -72,16 +76,17 @@ public class MainActivity extends AppCompatActivity implements JsBridge {
                 String[] split = is.split(";");
                 if(Boolean.parseBoolean(split[0])){
                     Toast.makeText(MainActivity.this,"登录成功！欢迎您："+split[1],Toast.LENGTH_SHORT).show();
+                    //切换页面
+                    //切换到列表页面
+                    Intent intent = new Intent(MainActivity.this,ListActivity.class);
+                    intent.putExtra("userPhone",split[1]+"");
+                    MainActivity.this.startActivity(intent);
 
                     //登录成功保存用户信息
-                    setContentView(R.layout.persion_info_list);
-                    TextView persionInfoListTv = findViewById(R.id.persionInfoListTv);
-                    persionInfoListTv.setText("欢迎您:"+split[1]);
                     SharedPreferences settings = getSharedPreferences("UserInfo", MODE_PRIVATE);
                     SharedPreferences.Editor editor = settings.edit();
                     editor.putString("currentUser",split[1]);
                     editor.commit();
-                    setContentView(R.layout.persion_info_list);
 
                 }else{
                     Toast.makeText(MainActivity.this,"用户名或密码错误，请重新登录！",Toast.LENGTH_SHORT).show();
@@ -90,4 +95,5 @@ public class MainActivity extends AppCompatActivity implements JsBridge {
             }
         });
     }
+
 }

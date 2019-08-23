@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ListActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -34,6 +34,30 @@
             android:layout_marginTop="300dp"
             android:layout_marginLeft="100dp"
             android:textSize="30sp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出"
+            android:id="@+id/quitBtn"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击获取数据"
+            android:onClick="getData" />
+
+
+        <Button
+            android:onClick="clickDuihua"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="-100dp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="普通对话框"
+            />
+
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
