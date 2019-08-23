@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements JsBridge {
                 String[] split = is.split(";");
                 if(Boolean.parseBoolean(split[0])){
                     Toast.makeText(MainActivity.this,"登录成功！欢迎您："+split[1],Toast.LENGTH_SHORT).show();
-                    //切换页面
                     //切换到列表页面
                     Intent intent = new Intent(MainActivity.this,ListActivity.class);
                     intent.putExtra("userPhone",split[1]+"");
