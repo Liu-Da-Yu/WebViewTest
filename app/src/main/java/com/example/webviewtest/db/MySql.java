@@ -6,14 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * author: JST - Dayu
+ * author: Dayu
  * date:   2019/8/22  19:07
  * context:
  */
 @SuppressWarnings("all")
 public class MySql {
 
-    private final String driver = "com.mysql.jdbc.Driver";
+    /*private final String driver = "com.mysql.jdbc.Driver";
     private final String url ="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull";
     private final String username= "root";
     private final String password = "123123123";
@@ -39,5 +39,5 @@ public class MySql {
                 }
             }
         }).start();
-    }
+    }*/
 }

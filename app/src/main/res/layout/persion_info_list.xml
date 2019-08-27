@@ -30,32 +30,30 @@
             android:id="@+id/persionInfoListTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="欢迎你XXXXX"
-            android:layout_marginTop="300dp"
             android:layout_marginLeft="100dp"
-            android:textSize="30sp"/>
+            android:layout_marginTop="300dp"
+            android:text="欢迎你XXXXX"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/quitBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="退出" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="退出"
-            android:id="@+id/quitBtn"/>
+            android:onClick="getData"
+            android:text="点击获取数据" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="点击获取数据"
-            android:onClick="getData" />
-
-
-        <Button
-            android:onClick="clickDuihua"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="-100dp"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="普通对话框"
-            />
+            android:layout_marginLeft="-100dp"
+            android:layout_marginTop="100dp"
+            android:onClick="clickDuihua"
+            android:text="普通对话框" />
 
 
     </LinearLayout>
